@@ -30,8 +30,8 @@ function retriever(){
     let pages = document.getElementById('pages');
     let view = toggle;
 
-    function hasViewed(){
-        if(toggle.classList.contains('on')){
+    function hasViewed(item){
+        if(item.classList.contains('on')){
             return "read";
         }
         else{
@@ -42,7 +42,7 @@ function retriever(){
     return {title: `${title.value}`,
         author: `${author.value}`,
         pages: `${pages.value}`,
-        view: hasViewed(),
+        view: hasViewed(toggle),
     };
 }
 
