@@ -1,0 +1,375 @@
+/*
+====================
+Variables
+====================
+*/
+:root {
+    /* colors */
+    --light-gold: rgb(243, 178, 12);
+    --dark-gold: rgb(218, 165, 34);
+    --dark-orange: rgb(190, 126, 6);
+    --black-sd: rgba(0, 0, 0, 1);
+    --black-trans: rgba(0, 0, 0, 0.5);
+    --gray-text: rgb(83, 81, 81);
+    --gray-dark-bg: rgb(235, 227, 227);
+    --gray-light-bg: hsl(210, 36%, 96%);
+    --white: rgb(255, 255, 255);
+    /*others*/
+    --spacing-sm: 0.1rem;
+    --spacing-lg: 0.25rem;
+    --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --border: 1px solid black;
+}
+
+/*
+====================
+Global styles
+====================
+*/
+*,
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    line-height: 1.25;
+    font-size: 1rem;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
+    letter-spacing: var(--spacing-sm);
+    text-transform: capitalize;
+    line-height: 1.25;
+}
+h1 {
+    font-size: 3rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.25rem;
+}
+h4 {
+    font-size: 0.875rem;
+}
+img {
+    width: 100%;
+}
+html {
+    scroll-behavior: smooth;
+}
+.btn {
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+@media screen and (min-width: 800px) {
+    h1 {
+      font-size: 4rem;
+    }
+    h2 {
+      font-size: 2.5rem;
+    }
+    h3 {
+      font-size: 1.75rem;
+    }
+    h4 {
+      font-size: 1rem;
+    }
+    body {
+      font-size: 1.05rem;
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+      line-height: 1;
+    }
+}
+
+/*
+====================
+Custom Styles
+====================
+*/
+.header, .container, footer {
+    width: 90%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+header {
+    box-shadow: var(--dark-shadow);
+    padding: 25px 0;
+}
+
+.header, .search {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    width: 68%;
+    max-width: 500px;
+    padding: 0 5px;
+    font-size: 1.3rem;
+    letter-spacing: var(--spacing-sm);
+    text-transform: capitalize;
+    align-items: center;
+    overflow: hidden;
+    justify-content: space-evenly;
+}
+
+.search input {
+    height: 60%;
+    width: 70%;
+    padding: 0 5px;
+}
+
+main {
+    background: var(--gray-light-bg);
+}
+.container {
+    padding: 30px 0;
+    min-height: 80vh;
+}
+
+.add {
+    width: fit-content;
+    margin: auto;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: var(--spacing-sm);
+    padding: 13px;
+    margin-bottom: 35px;
+    border-radius: 7px;
+}
+
+.add:hover {
+    color: var(--white);
+    background: var(--dark-orange);
+}
+
+.books {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: var(--dark-shadow);
+}
+
+.books p {
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    padding: 15px 0;
+    margin-bottom: 7px;
+    border-radius: 5px;
+}
+
+.unread {
+    letter-spacing: var(--spacing-sm);
+    background-color: rgba(231, 126, 126, 0.7);
+    color: white;
+}
+
+.unread:hover {
+    background: rgba(231, 126, 126, 1);
+}
+
+.read {
+    background: rgba(1, 53, 1, 0.5);
+    color: var(--white);
+    letter-spacing: var(--spacing-sm);
+}
+
+.read:hover {
+    background: rgba(1, 53, 1, 0.8);
+}
+
+.delete {
+    letter-spacing: var(--spacing-sm);
+    font-variant: small-caps;
+    background-color: var(--gray-light-bg);
+}
+
+.delete:hover {
+    background: var(--gray-dark-bg);
+}
+fieldset {
+    border: none;
+}
+
+.form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+.form {
+    min-width: 320px;
+    padding: 30px 20px 70px 20px;
+    background: var(--gray-dark-bg);
+    position: relative;
+}
+
+.form p {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: var(--spacing-sm);
+}
+
+.form div {
+    margin-bottom: 10px;
+}
+
+.inputs {
+    width: 100%;
+    padding: 10px 3px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    letter-spacing: var(--spacing-sm);
+    text-transform: capitalize;
+}
+
+button {
+    padding: 10px 0px;
+    width: inherit;
+    letter-spacing: var(--spacing-sm);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+button:hover {
+    border-color: white;
+    border-radius: 5px;
+    color: var(--white);
+    background: var(--dark-orange);
+}
+
+
+footer {
+    padding: 5px 0;
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--gray-text);
+}
+
+.show {
+    display: grid;
+}
+
+.show .form {
+    animation-name: show;
+    animation-duration: .6s;
+    animation-fill-mode: forwards;
+}
+
+.btn-container {
+    position: relative;
+    border: 1px solid black;
+    border-radius: 45px;
+    width: 18%;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+  }
+  
+  .toggle {
+    position: absolute;
+    width: 50%;
+    height: 90%;
+    border-radius: 45px;
+    top: 1px;
+    left: 2px;
+    background: gray;
+    transition: .5s;
+  }
+  
+  .on {
+    background: rgb(4, 116, 221);
+    border-color: rgb(4, 116, 221);
+    right: 1px;
+    transform: translateX(85%);
+  }
+
+  .toggle-btn { 
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 20px 0 20px;
+    padding-bottom: 0;
+    letter-spacing: var(--spacing-sm);
+  }
+
+@keyframes show {
+    0%{ 
+        transform: scale(0.7); 
+        opacity: 0.7;
+    }
+    100%{ 
+        transform: scale(1); 
+        opacity: 1;
+    }
+}
+
+@media (min-width: 600px ) {
+    .container {
+        max-width: 580px;
+    }
+}
+
+@media (min-width: 800px ) {
+    .container {
+        max-width: 80%;
+    }
+
+    .book-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+}
+
+@media (min-width: 1150px) {
+    .container {
+        max-width: 1150px;
+    }
+    
+    .book-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: rgb(231, 126, 126);
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+.close:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
