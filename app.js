@@ -6,14 +6,13 @@ let inputs = document.querySelectorAll('.form input');
 let toggle = document.querySelector('.toggle');
 let btnContainer= document.querySelector('.btn-container');
 
-
+//event listeners
 // function to display the form container
 addBook.addEventListener('click', function(e){
     formCont.classList.add('show')
 })
 
 let books = []
-
 // takes care of populating the app
 form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -21,29 +20,52 @@ form.addEventListener('submit', function(e){
     books.push(retriever());
     displayBooks(books);
     resetInputs(inputs);
+});
+
+//for read/unread btn
+btnContainer.addEventListener('click', function(e){
+    toggle.classList.toggle('on');
 })
 
+// filter books
+const search = document.getElementById('search-box');
+search.addEventListener('input', function(e){
+    filBooks = books.filter(element => {
+        let item = (element.title).toLowerCase();
+        return item.includes((search.value).toLowerCase());
+    });
+    displayBooks(filBooks)
+})
 
+const closeBtn = document.querySelector('.close');
+closeBtn.addEventListener('click', function(e){
+    formCont.classList.remove('show')
+}) 
+
+
+//functions
 function retriever(){
+    //to create the objects that get passed into the book array
     let title = document.getElementById('title');
     let author = document.getElementById('author');
     let pages = document.getElementById('pages');
     let view = toggle;
-
-    function hasViewed(item){
-        if(item.classList.contains('on')){
-            return "read";
-        }
-        else{
-            return "unread";
-        }
-    }
     
     return {title: `${title.value}`,
         author: `${author.value}`,
         pages: `${pages.value}`,
         view: hasViewed(toggle),
     };
+}
+
+function hasViewed(item){
+    //for read/unread status
+    if(item.classList.contains('on')){
+        return "read";
+    }
+    else{
+        return "unread";
+    }
 }
 
 function displayBooks(displayItem){
@@ -57,14 +79,12 @@ function displayBooks(displayItem){
     </div>`;
     }).join("");
     bookCont.innerHTML = bookItems;
+    //added this as a function to help in removing books
     deleteBook(bookCont);
 }
 
-btnContainer.addEventListener('click', function(e){
-  toggle.classList.toggle('on');
-})
-
 function resetInputs(items){
+    //to reset the form inputs
     items.forEach(function(item){
         item.value = "";
     })
@@ -82,22 +102,7 @@ function deleteBook(value){
     })
 }
 
-const search = document.getElementById('search-box');
-
-search.addEventListener('input', function(e){
-    filBooks = books.filter(element => {
-        let item = (element.title).toLowerCase();
-        return item.includes((search.value).toLowerCase());
-    });
-    displayBooks(filBooks)
-})
-
 const date = document.querySelector('footer span');
 const yr = new Date();
 let year = yr.getFullYear();
 date.textContent = year;
-
-const closeBtn = document.querySelector('.close');
-closeBtn.addEventListener('click', function(e){
-    formCont.classList.remove('show')
-}) 
