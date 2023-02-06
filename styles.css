@@ -44,6 +44,9 @@ ul {
 a {
     text-decoration: none;
 }
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
 h1,
 h2,
 h3,
@@ -66,6 +69,9 @@ h4 {
 }
 img {
     width: 100%;
+}
+input, button, textarea, select {
+    font: inherit;
 }
 html {
     scroll-behavior: smooth;
@@ -220,7 +226,6 @@ fieldset {
     width: 100%;
     min-height: 100vh;
     place-items: center;
-    background: rgba(0, 0, 0, 0.3);
     display: none;
 }
 
@@ -321,6 +326,20 @@ footer {
     letter-spacing: var(--spacing-sm);
   }
 
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: rgb(231, 126, 126);
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+.close:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
 @keyframes show {
     0%{ 
         transform: scale(0.7); 
@@ -358,18 +377,4 @@ footer {
     .book-container {
         grid-template-columns: repeat(3, 1fr);
     }
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    color: rgb(231, 126, 126);
-    font-weight: 900;
-    font-size: 1.5rem;
-}
-
-.close:hover {
-    transform: scale(1.2);
-    cursor: pointer;
 }
