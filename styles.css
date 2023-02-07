@@ -215,6 +215,8 @@ main {
 .delete:hover {
     background: var(--gray-dark-bg);
 }
+
+/*==============================================================*/
 fieldset {
     border: none;
 }
@@ -234,6 +236,7 @@ fieldset {
     padding: 30px 20px 70px 20px;
     background: var(--gray-dark-bg);
     position: relative;
+    border: 1px solid gray;
 }
 
 .form p {
@@ -248,25 +251,59 @@ fieldset {
     margin-bottom: 10px;
 }
 
-.inputs {
+.inputs{
+    outline: none;
     width: 100%;
-    padding: 10px 3px;
+    padding: 5px 3px;
     font-size: 1.2rem;
-    border-radius: 5px;
     letter-spacing: var(--spacing-sm);
     text-transform: capitalize;
+    border: none;
+    border-bottom: 2px solid black;
+    background: transparent;
+    margin-bottom: 5px;
+}
+input[type="checkbox"]{
+    appearance: none;
+    position: relative;
+    border: 1px solid black;
+    width: 50px;
+    border-radius: 25px;
+    transition: .4s;
+}
+
+input[type="checkbox"]::before{
+    content: ">>";
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 50%;
+    color: white;
+    background: white;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    transition: .3s;
+}
+
+input[type="checkbox"]:checked{
+    background: rgb(98, 191, 245);
+}
+
+input[type="checkbox"]:checked::before{
+    top: -2px;
+    left: 50%;
 }
 
 button {
     padding: 10px 0px;
-    width: inherit;
+    width: 100%;
     letter-spacing: var(--spacing-sm);
     text-transform: uppercase;
     font-size: 1.1rem;
 }
 
 button:hover {
-    border-color: white;
+    border-color: transparent;
     border-radius: 5px;
     color: var(--white);
     background: var(--dark-orange);
@@ -298,9 +335,9 @@ footer {
     display: flex;
     justify-content: space-around;
     color: white;
-  }
+}
   
-  .toggle {
+.toggle {
     position: absolute;
     width: 50%;
     height: 90%;
@@ -309,24 +346,24 @@ footer {
     left: 2px;
     background: gray;
     transition: .5s;
-  }
+}
   
-  .on {
+.on {
     background: rgb(4, 116, 221);
     border-color: rgb(4, 116, 221);
     right: 1px;
     transform: translateX(85%);
-  }
+}
 
-  .toggle-btn { 
+.toggle-btn { 
     display: flex;
     justify-content: space-evenly;
     padding: 10px 20px 0 20px;
     padding-bottom: 0;
     letter-spacing: var(--spacing-sm);
-  }
+}
 
-  .close {
+.close {
     position: absolute;
     top: 15px;
     right: 15px;

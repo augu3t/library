@@ -2,7 +2,7 @@ let addBook = document.querySelector('.add');
 let formCont = document.querySelector('.form-container');
 let bookCont = document.querySelector('.book-container');
 let form = document.querySelector('form');
-let inputs = document.querySelectorAll('.form input');
+let inputs = form.querySelectorAll('.inputs');
 let toggle = document.querySelector('.toggle');
 let btnContainer= document.querySelector('.btn-container');
 
@@ -106,3 +106,11 @@ const date = document.querySelector('footer span');
 const yr = new Date();
 let year = yr.getFullYear();
 date.textContent = year;
+
+
+/*
+========================================================================= 
+Modifications
+========================================================================= 
+*/
+
