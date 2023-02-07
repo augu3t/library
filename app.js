@@ -1,71 +1,59 @@
-let addBook = document.querySelector('.add');
-let formCont = document.querySelector('.form-container');
-let bookCont = document.querySelector('.book-container');
-let form = document.querySelector('form');
-let inputs = form.querySelectorAll('.inputs');
-let toggle = document.querySelector('.toggle');
-let btnContainer= document.querySelector('.btn-container');
+const addBook = document.querySelector('.add');
+const formCont = document.querySelector('.form-container');
+const bookCont = document.querySelector('.book-container');
+const form = document.querySelector('form');
+const inputs = form.querySelectorAll('.inputs');
+const search = document.getElementById('search-box');
+const closeBtn = document.querySelector('.close');
+const myLibrary = []
+const date = document.querySelector('footer span');
 
-//event listeners
-// function to display the form container
-addBook.addEventListener('click', function(e){
-    formCont.classList.add('show')
-})
+addBook.onclick = () => formCont.classList.add('show');
+closeBtn.onclick = () => removeForm();
 
-let books = []
 // takes care of populating the app
 form.addEventListener('submit', function(e){
     e.preventDefault();
-    formCont.classList.remove('show');
-    books.push(retriever());
-    displayBooks(books);
-    resetInputs(inputs);
+    removeForm();
+    addBookToLibrary(getInputs());
+    displayBooks(myLibrary);
+    e.target.reset();
 });
 
-//for read/unread btn
-btnContainer.addEventListener('click', function(e){
-    toggle.classList.toggle('on');
-})
-
 // filter books
-const search = document.getElementById('search-box');
 search.addEventListener('input', function(e){
-    filBooks = books.filter(element => {
+    filBooks = myLibrary.filter(element => {
         let item = (element.title).toLowerCase();
         return item.includes((search.value).toLowerCase());
     });
     displayBooks(filBooks)
 })
 
-const closeBtn = document.querySelector('.close');
-closeBtn.addEventListener('click', function(e){
-    formCont.classList.remove('show')
-}) 
-
-
-//functions
-function retriever(){
-    //to create the objects that get passed into the book array
-    let title = document.getElementById('title');
-    let author = document.getElementById('author');
-    let pages = document.getElementById('pages');
-    let view = toggle;
-    
-    return {title: `${title.value}`,
-        author: `${author.value}`,
-        pages: `${pages.value}`,
-        view: hasViewed(toggle),
-    };
+function Book(title, author, pages){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = "unread"
+    this.hasRead = () => {
+        this.read = "read"
+    }
 }
 
-function hasViewed(item){
-    //for read/unread status
-    if(item.classList.contains('on')){
-        return "read";
+function addBookToLibrary(item){
+    const book = new Book(item.title, item.author, item.pages)
+    if(item.view.checked){
+      book.hasRead()
     }
-    else{
-        return "unread";
-    }
+    myLibrary.push(book);
+}
+
+function getInputs(){
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const view = document.querySelector(".check");
+
+    return {title, author, pages, view};
 }
 
 function displayBooks(displayItem){
@@ -74,21 +62,13 @@ function displayBooks(displayItem){
         <p class="title">"${item.title}"</p>
         <p class="author">${item.author}</p>
         <p class="pages">${item.pages} Pages</p>
-        <p class="btn ${item.view}">${item.view}</p>
+        <p class="btn ${item.read}">${item.read}</p>
         <p class="btn delete">Remove</p>
     </div>`;
     }).join("");
     bookCont.innerHTML = bookItems;
     //added this as a function to help in removing books
     deleteBook(bookCont);
-}
-
-function resetInputs(items){
-    //to reset the form inputs
-    items.forEach(function(item){
-        item.value = "";
-    })
-    toggle.classList.remove('on')
 }
 
 function deleteBook(value){
@@ -102,15 +82,14 @@ function deleteBook(value){
     })
 }
 
-const date = document.querySelector('footer span');
+function removeForm(){
+    formCont.classList.remove('show');
+}
+
+
 const yr = new Date();
 let year = yr.getFullYear();
 date.textContent = year;
 
 
-/*
-========================================================================= 
-Modifications
-========================================================================= 
-*/
 

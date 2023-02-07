@@ -327,34 +327,6 @@ footer {
     animation-fill-mode: forwards;
 }
 
-.btn-container {
-    position: relative;
-    border: 1px solid black;
-    border-radius: 45px;
-    width: 18%;
-    display: flex;
-    justify-content: space-around;
-    color: white;
-}
-  
-.toggle {
-    position: absolute;
-    width: 50%;
-    height: 90%;
-    border-radius: 45px;
-    top: 1px;
-    left: 2px;
-    background: gray;
-    transition: .5s;
-}
-  
-.on {
-    background: rgb(4, 116, 221);
-    border-color: rgb(4, 116, 221);
-    right: 1px;
-    transform: translateX(85%);
-}
-
 .toggle-btn { 
     display: flex;
     justify-content: space-evenly;
