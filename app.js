@@ -5,7 +5,7 @@ const form = document.querySelector('form');
 const inputs = form.querySelectorAll('.inputs');
 const search = document.getElementById('search-box');
 const closeBtn = document.querySelector('.close');
-const myLibrary = []
+let myLibrary = []
 const date = document.querySelector('footer span');
 
 addBook.onclick = () => formCont.classList.add('show');
@@ -37,6 +37,14 @@ function Book(title, author, pages){
     this.hasRead = () => {
         this.read = "read"
     }
+    this.delete = () => {
+        myLibrary = myLibrary.filter(book => {
+            if(book !== this){
+                return book
+            }
+        })
+        displayBooks(myLibrary);
+    }
 }
 
 function addBookToLibrary(item){
@@ -59,37 +67,34 @@ function getInputs(){
 function displayBooks(displayItem){
     let bookItems = displayItem.map(function(item){
         return `<div class="books">
-        <p class="title">"${item.title}"</p>
+        <p class="title">${item.title}</p>
         <p class="author">${item.author}</p>
         <p class="pages">${item.pages} Pages</p>
-        <p class="btn ${item.read}">${item.read}</p>
+        <p class="btn yes ${item.read}">${item.read}</p>
         <p class="btn delete">Remove</p>
     </div>`;
     }).join("");
     bookCont.innerHTML = bookItems;
-    //added this as a function to help in removing books
-    deleteBook(bookCont);
-}
-
-function deleteBook(value){
-    const remove = value.querySelectorAll('.delete');
-    remove.forEach(btn => {
-        btn.addEventListener('click', function(e){
-            const book = e.target.parentElement;
-            book.remove();
-            console.log(book)
-        })
-    })
+    removeBook()
 }
 
 function removeForm(){
     formCont.classList.remove('show');
 }
 
+function removeBook(){
+    const remove = document.querySelectorAll(".delete");
+    remove.forEach(btn => {
+        btn.addEventListener('click', function(e){
+            const bookList = Array.from(bookCont.childNodes)
+            const title = bookList.indexOf(e.target.parentElement);
+            myLibrary[title].delete();
+        })
+    })
+}
 
 const yr = new Date();
 let year = yr.getFullYear();
 date.textContent = year;
-
 
 
